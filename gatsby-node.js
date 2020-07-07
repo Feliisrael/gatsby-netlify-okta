@@ -35,4 +35,12 @@ exports.createPages = async ({actions, graphql, reporter}) => {
       context: {}, // additional data can be passed via context
     })
   })
+}
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions;
+  if (page.path.match(/^\/account/)) {
+    page.matchPath = "/account/*";
+    createPage(page)
+  }
 };
